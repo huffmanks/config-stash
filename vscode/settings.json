@@ -1,0 +1,77 @@
+{
+  "terminal.integrated.profiles.windows": {
+    "GitBash": {
+      "source": "Git Bash",
+      "path": ["C:\\Program Files\\Git\\bin\\bash.exe"],
+      "icon": "terminal-bash"
+    },
+    "Command Prompt": {
+      "path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"],
+      "args": [],
+      "icon": "terminal-cmd"
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "workbench.startupEditor": "none",
+  "workbench.editor.enablePreview": true,
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.activeIconPack": "react_redux",
+  "css.lint.unknownAtRules": "ignore",
+  "diffEditor.wordWrap": "on",
+  "editor.stickyScroll.enabled": false,
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
+  "editor.linkedEditing": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.minimap.enabled": false,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "files.insertFinalNewline": false,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.associations": {
+    "_redirects": "plaintext",
+    "*.astro": "astro"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.formatOnSave": true
+  },
+  "html.format.preserveNewLines": false,
+  "html.format.enable": true,
+  "html.format.wrapLineLength": 0,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "prettier.jsxSingleQuote": false,
+  "prettier.bracketSameLine": true,
+  "prettier.semi": true,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": false,
+  "prettier.arrowParens": "always",
+  "prettier.printWidth": 200,
+  "prettier.useEditorConfig": false,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSave": true
+  },
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+  "javascript.preferences.quoteStyle": "double",
+  "javascript.format.semicolons": "insert",
+  "typescript.format.semicolons": "insert",
+  "reactSnippets.settings.prettierEnabled": true,
+  "reactSnippets.settings.importReactOnTop": false,
+  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-wsl"],
+  "vscode-color-picker.languages": ["python", "javascript", "typescript", "typescriptreact", "html", "css"],
+  "autopep8.args": ["--max-line-length", "120", "--experimental"],
+  "postman.telemetry.enabled": false
+}
