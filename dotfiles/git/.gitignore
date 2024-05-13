@@ -1,5 +1,4 @@
-# ~/.gitignore
-
+# OS files
 .DS_Store
 .DS_Store?
 ._*
@@ -8,3 +7,7 @@
 ehthumbs.db
 Thumbs.db
 desktop.ini
+
+# Build/dependency directories
+node_modules
+venv

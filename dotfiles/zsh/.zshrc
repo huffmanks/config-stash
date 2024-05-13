@@ -1,5 +1,3 @@
-# ~/.zshrc
-
 # Alias definitions
 alias mysql='/usr/local/mysql/bin/mysql'
 
@@ -30,5 +28,3 @@ alias rg='grep -rHn'                  # Recursive, display filename and line num
 
 # Source .zprofile to ensure path variables are updated
 source ~/.zprofile
-
-# Interactive shell configuration, if needed, can go here
