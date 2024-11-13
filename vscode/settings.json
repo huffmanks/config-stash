@@ -1,77 +1,98 @@
 {
-  "terminal.integrated.profiles.windows": {
-    "GitBash": {
-      "source": "Git Bash",
-      "path": ["C:\\Program Files\\Git\\bin\\bash.exe"],
-      "icon": "terminal-bash"
-    },
-    "Command Prompt": {
-      "path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"],
-      "args": [],
-      "icon": "terminal-cmd"
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "args": ["-l"],
+      "path": "/bin/zsh"
     }
   },
-  "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "terminal.integrated.defaultProfile.osx": "zsh",
-  "workbench.startupEditor": "none",
-  "workbench.editor.enablePreview": true,
-  "workbench.colorTheme": "One Dark Pro Darker",
-  "workbench.iconTheme": "material-icon-theme",
-  "material-icon-theme.activeIconPack": "react_redux",
-  "css.lint.unknownAtRules": "ignore",
-  "diffEditor.wordWrap": "on",
-  "editor.stickyScroll.enabled": false,
-  "editor.formatOnSave": true,
-  "editor.wordWrap": "on",
-  "editor.linkedEditing": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.minimap.enabled": false,
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
+  "terminal.integrated.profiles.windows": {
+    "Command Prompt": {
+      "args": [],
+      "icon": "terminal-cmd",
+      "path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"]
+    },
+    "GitBash": {
+      "icon": "terminal-bash",
+      "path": ["C:\\Program Files\\Git\\bin\\bash.exe"],
+      "source": "Git Bash"
+    }
   },
-  "files.insertFinalNewline": false,
-  "files.trimTrailingWhitespace": true,
-  "files.trimFinalNewlines": true,
-  "files.associations": {
-    "_redirects": "plaintext",
-    "*.astro": "astro"
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSave": true
   },
   "[python]": {
     "editor.defaultFormatter": "ms-python.autopep8",
     "editor.formatOnSave": true
   },
-  "html.format.preserveNewLines": false,
-  "html.format.enable": true,
-  "html.format.wrapLineLength": 0,
-  "liveServer.settings.donotVerifyTags": true,
-  "liveServer.settings.donotShowInfoMsg": true,
-  "prettier.jsxSingleQuote": false,
-  "prettier.bracketSameLine": true,
-  "prettier.semi": true,
-  "prettier.tabWidth": 2,
-  "prettier.singleQuote": false,
-  "prettier.arrowParens": "always",
-  "prettier.printWidth": 200,
-  "prettier.useEditorConfig": false,
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma",
-    "editor.formatOnSave": true
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
-  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
-  "javascript.preferences.quoteStyle": "double",
-  "javascript.format.semicolons": "insert",
-  "typescript.format.semicolons": "insert",
-  "reactSnippets.settings.prettierEnabled": true,
-  "reactSnippets.settings.importReactOnTop": false,
-  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-wsl"],
-  "vscode-color-picker.languages": ["python", "javascript", "typescript", "typescriptreact", "html", "css"],
   "autopep8.args": ["--max-line-length", "120", "--experimental"],
-  "postman.telemetry.enabled": false
+  "css.lint.unknownAtRules": "ignore",
+  "diffEditor.wordWrap": "on",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleImplementations": "goto",
+  "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": false,
+  "editor.stickyScroll.maxLineCount": 1,
+  "editor.wordWrap": "on",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "files.associations": {
+    "*.astro": "astro",
+    "*.css": "tailwindcss",
+    "_redirects": "plaintext"
+  },
+  "files.insertFinalNewline": false,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "html.format.enable": true,
+  "html.format.preserveNewLines": false,
+  "html.format.wrapLineLength": 0,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "javascript.format.semicolons": "insert",
+  "javascript.preferences.quoteStyle": "double",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "material-icon-theme.activeIconPack": "react_redux",
+  "postman.telemetry.enabled": false,
+  "prettier.arrowParens": "always",
+  "prettier.bracketSameLine": true,
+  "prettier.jsxSingleQuote": false,
+  "prettier.printWidth": 200,
+  "prettier.semi": true,
+  "prettier.singleQuote": false,
+  "prettier.tabWidth": 2,
+  "prettier.useEditorConfig": false,
+  "reactSnippets.settings.importReactOnTop": false,
+  "reactSnippets.settings.prettierEnabled": true,
+  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-wsl"],
+  "tailwindCSS.experimental.classRegex": ["class:\\s*?[\"'`]([^\"'`]*).*?,", "className:\\s*?[\"'`]([^\"'`]*).*?,"],
+  "typescript.format.semicolons": "insert",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "vscode-color-picker.languages": ["python", "javascript", "typescript", "typescriptreact", "html", "css"],
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.editor.enablePreview": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none",
+  "workbench.tree.enableStickyScroll": false
 }
