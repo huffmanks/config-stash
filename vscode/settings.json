@@ -26,6 +26,9 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma",
     "editor.formatOnSave": true
@@ -54,7 +57,9 @@
   "editor.stickyScroll.maxLineCount": 1,
   "editor.wordWrap": "on",
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
+    "javascript": "javascriptreact",
+    "mjml": "html",
+    "mdx": "typescriptreact"
   },
   "files.associations": {
     "*.astro": "astro",
