@@ -80,7 +80,7 @@ darwin-rebuild switch --flake .#ok-mac-pro
 ## Remove unused profiles
 
 ```sh
-nix-collect-garbage -d
+nix-collect-garbage --delete-old
 ```
 
 ## Uninstall nix-darwin
@@ -130,7 +130,7 @@ for u in $(sudo dscl . -list /Users | grep _nixbld); do sudo dscl . -delete /Use
 7. Remove the files Nix added to your system:
 
 ```sh
-sudo rm -rf /etc/nix /var/root/.nix-profile /var/root/.nix-defexpr /var/root/.nix-channels ~/.nix-profile ~/.nix-defexpr ~/.nix-channels
+sudo rm -rf /etc/nix ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.cache/nix ~/.local/state/nix
 ```
 
 8. Remove the Nix Store volume:
