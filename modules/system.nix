@@ -4,19 +4,15 @@
   # Global
   system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
   system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
-  # system.defaults.NSGlobalDomain.AppleActionOnDoubleClick = "Zoom";
-  # system.defaults.NSGlobalDomain."com.apple.finder.ShowRecentTags" = false;
-  system.defaults.NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = true;
-  system.defaults.NSGlobalDomain."com.apple.trackpad.trackpadCornerClickBehavior" = 1;
-  # system.defaults.NSGlobalDomain."com.apple.mouse.secondaryClickButton" = 2;
-  # system.defaults.NSGlobalDomain.NSQuitAlwaysKeepsWindows = false;
+  system.defaults.trackpad.TrackpadRightClick = true;
+  system.defaults.trackpad.TrackpadCornerSecondaryClick = 2;
 
   # Finder
   system.defaults.finder.AppleShowAllFiles = true;
   system.defaults.finder.AppleShowAllExtensions = true;
   system.defaults.finder._FXSortFoldersFirst = true;
   system.defaults.finder._FXSortFoldersFirstOnDesktop = true;
-  system.defaults.finder._FXShowPosixPathInTitle = true;
+  system.defaults.finder._FXShowPosixPathInTitle = false; # remove
   system.defaults.finder.FXDefaultSearchScope = "SCcf";
   system.defaults.finder.FXEnableExtensionChangeWarning = false;
   system.defaults.finder.FXPreferredViewStyle = "Nlsv";
@@ -66,8 +62,16 @@
   # app store updates
   system.defaults.CustomUserPreferences."com.apple.commerce".AutoUpdate = true;
 
-  # Configure Finder list view settings (columns, order, and behavior)
+
   system.activationScripts.postUserActivation.text = ''
+    # Set list view as default for all folders
+    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+    # Create screenshots directory if it doesn't exist, then set location
+    mkdir -p ~/Documents/screenshots
+    defaults write com.apple.screencapture location ~/Documents/screenshots
+
+    # Configure Finder list view settings (columns, order, and behavior)
     for domain in StandardViewSettings ComputerViewSettings NetworkViewSettings; do
       # First ensure ListViewSettings exists with default values
       defaults write com.apple.finder $domain -dict-add "ListViewSettings" '{}'
