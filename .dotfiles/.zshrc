@@ -1,13 +1,3 @@
-# Exports
-# Homebrew
-export PATH="/opt/homebrew/sbin:$PATH"
-
-## Android Studio and Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
 # nvm - Lazy Loading Plugin
 export NVM_DIR="$HOME/.nvm"
 
@@ -74,6 +64,3 @@ alias glog='git log --oneline --graph --decorate' # Pretty git log
 # Shawtys
 alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
-
-# Source .zprofile to ensure path variables are updated
-source ~/.zprofile

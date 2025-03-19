@@ -5,7 +5,7 @@
   system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
   system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
   system.defaults.trackpad.TrackpadRightClick = true;
-  system.defaults.NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = 1;
+  system.defaults.NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = true;
   system.defaults.NSGlobalDomain."com.apple.trackpad.trackpadCornerClickBehavior" = 1;
 
   # Finder
@@ -55,7 +55,7 @@
   # Miscellaneous
   security.pam.services.sudo_local.touchIdAuth = true;
   system.defaults.screencapture.location = "~/Documents/screenshots";
-  system.defaults.controlcenter.Bluetooth = 18;
+  system.defaults.controlcenter.Bluetooth = true;
 
   # macOS security updates
   system.defaults.CustomUserPreferences."com.apple.SoftwareUpdate".CriticalUpdateInstall = 1;
