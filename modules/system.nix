@@ -5,6 +5,7 @@
   system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
   system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
   system.defaults.trackpad.TrackpadRightClick = true;
+  system.defaults.NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = 1;
   system.defaults.NSGlobalDomain."com.apple.trackpad.trackpadCornerClickBehavior" = 1;
 
   # Finder
@@ -54,6 +55,7 @@
   # Miscellaneous
   security.pam.services.sudo_local.touchIdAuth = true;
   system.defaults.screencapture.location = "~/Documents/screenshots";
+  system.defaults.controlcenter.Bluetooth = 18;
 
   # macOS security updates
   system.defaults.CustomUserPreferences."com.apple.SoftwareUpdate".CriticalUpdateInstall = 1;
@@ -63,6 +65,10 @@
   system.activationScripts.postUserActivation.text = ''
     # Create dirs
     mkdir -p ~/Documents/screenshots ~/Documents/dev
+
+    # Keep: Map bottom right corner to right-click
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -int 0
 
     # "disable" Writing of .DS_Store files on network or USB volumes
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
