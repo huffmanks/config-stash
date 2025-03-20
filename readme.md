@@ -54,10 +54,10 @@ curl -fsSL https://get.pnpm.io/install.sh | sh -
 git clone https://github.com/huffmanks/config-stash.git .nix-config && cd .nix-config
 ```
 
-7. Copy .gitconfig and .gitignore
+1. Copy .gitconfig, .gitignore and .zshrc
 
 ```sh
-cp ./.dotfiles/.gitignore ~/.gitignore && cp ./.dotfiles/.gitconfig ~/.gitconfig
+cp ./.dotfiles/.gitignore ~/.gitignore && cp ./.dotfiles/.gitconfig ~/.gitconfig && cp ./.dotfiles/.zshrc ~/.zshrc
 ```
 
 8. Install Determinate Nix
