@@ -38,16 +38,6 @@ curl -fsSL https://get.pnpm.io/install.sh | sh -
    brew install ffmpeg jq bat gh pipx zsh-autosuggestions zsh-syntax-highlighting
    ```
 
-   3. Update .zshrc
-
-   ```sh
-   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-   ```
-
-   ```sh
-   echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
-   ```
-
 6. Clone repo
 
 ```sh
