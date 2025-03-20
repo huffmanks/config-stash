@@ -120,7 +120,10 @@ sudo rm /Library/LaunchDaemons/org.nixos.darwin-store.plist
 
 ```sh
 sudo dscl . -delete /Groups/nixbld
-for u in $(sudo dscl . -list /Users | grep _nixbld); do sudo dscl . -delete /Users/$u; done
+
+for u in $(sudo dscl . -list /Users | grep _nixbld); do
+  sudo dscl . -delete /Users/$u
+done
 ```
 
 5. Edit fstab using sudo vifs to remove the line mounting the Nix Store volume on /nix, which looks like UUID=<uuid> /nix apfs rw,noauto,nobrowse,suid,owners or LABEL=Nix\040Store /nix apfs rw,nobrowse. This will prevent automatic mounting of the Nix Store volume.
@@ -130,7 +133,7 @@ for u in $(sudo dscl . -list /Users | grep _nixbld); do sudo dscl . -delete /Use
 7. Remove the files Nix added to your system:
 
 ```sh
-sudo rm -rf /etc/nix ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.cache/nix ~/.local/state/nix
+sudo rm -rf /etc/nix ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.nix-profile ~/.nix-defexpr ~/.nix-channels ~/.cache/nix ~/.local/state/nix /System/Volumes/Data/private/var/root/.nix-defexpr /System/Volumes/Data/private/var/root/.cache/nix /private/var/root/.nix-defexpr /private/var/root/.cache/nix
 ```
 
 8. Remove the Nix Store volume:
