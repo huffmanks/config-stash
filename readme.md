@@ -1,6 +1,6 @@
 # Setup
 
-1. Install xcode
+1. Install xcode command line tools
 
 ```sh
 xcode-select --install
