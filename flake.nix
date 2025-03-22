@@ -1,5 +1,9 @@
 {
-  description = "Kevin's darwin system";
+  hostname = builtins.getEnv "HOSTNAME";
+  user = builtins.getEnv "USER";
+  home = builtins.getEnv "HOME";
+
+  description = user + " darwin system";
 
   inputs = {
     # Use `github:NixOS/nixpkgs/nixpkgs-24.11-darwin` to use Nixpkgs 24.11.
@@ -10,8 +14,9 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs }: {
-    darwinConfigurations."ok-mac-pro" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
       modules = [ ./configuration.nix ];
+      specialArgs = { hostname, user, home };
     };
   };
 }

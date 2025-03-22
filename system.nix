@@ -1,5 +1,8 @@
 { config, ... }:
 
+let
+  home = config.specialArgs.home;
+in
 {
   # Global
   system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
@@ -24,7 +27,7 @@
   system.defaults.finder.ShowPathbar = true;
   system.defaults.finder.ShowStatusBar = true;
   system.defaults.finder.NewWindowTarget = "Other";
-  system.defaults.finder.NewWindowTargetPath = "file:///Users/huffmanks/Downloads";
+  system.defaults.finder.NewWindowTargetPath = "file:///${home}/Downloads";
 
   # Dock
   system.defaults.dock.tilesize = 64;

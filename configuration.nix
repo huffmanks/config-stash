@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  home = config.specialArgs.home;
+in
 {
   imports = [
     ./system.nix
@@ -26,7 +29,7 @@
   #   enableCompletion = true;
   #   enableFastSyntaxHighlighting = true;
   #   shellInit = ''
-  #     source /Users/huffmanks/.nix-config/.dotfiles/.zshrc
+  #     source ${home}/.nix-config/.dotfiles/.zshrc
   #   '';
   # };
 

@@ -1,7 +1,7 @@
 [init]
 	defaultBranch = main
 [user]
-	name = Kevin Huffman
-	email = huffmanks2@gmail.com
+	name = # First Last
+	email = # email@example.com
 [core]
 	excludesfile = ~/.gitignore
