@@ -21,6 +21,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# Java & Android Studio environment variables
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+
 # Opinionated defaults
 alias ls='ls -A'                      # List all entries except . and ..
 alias grep='grep --color=auto'        # Shows matches in color
