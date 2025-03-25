@@ -5,3 +5,7 @@
 	email = # email@example.com
 [core]
 	excludesfile = ~/.gitignore
+
+# Set postBuffer to 10MB
+[http]
+	postBuffer = 10485760
