@@ -31,7 +31,7 @@ alias rg='grep -rHn'                  # Recursive, display filename and line num
 # ----- Prompt colors -----
 # Define colors
 GREEN='%F{green}'
-PINK=$'%{\e[38;5;182m%}'
+TEAL=$'%{\e[38;5;37m%}'
 RESET='%f'
 RESET_COLOR=$'%{\e[0m%}'
 
@@ -39,7 +39,7 @@ RESET_COLOR=$'%{\e[0m%}'
 BOLD_ON='%B'
 BOLD_OFF='%b'
 
-PROMPT="${BOLD_ON}${GREEN}%m:%n${RESET}${BOLD_OFF} ${BOLD_ON}${PINK}%~${RESET_COLOR}${BOLD_OFF} \$ "
+PROMPT="${BOLD_ON}${GREEN}%m:%n${RESET}${BOLD_OFF} ${BOLD_ON}${TEAL}%~${RESET_COLOR}${BOLD_OFF} \$ "
 
 # ----- zsh-autosuggestions -----
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
