@@ -12,6 +12,12 @@
   bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) linux
   ```
 
+## Android dev setup
+
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/android-dev-setup.sh)
+```
+
 ## Linux dev setup
 
 ```sh
