@@ -65,6 +65,22 @@ else
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_SYNTAX_HIGHLIGHTING_DIR"
 fi
 
+ZSHRC_TEST="$HOME/.zshrc"
+if zsh -n "$ZSHRC_TEST"; then
+    echo "[OK] .zshrc syntax looks good."
+else
+    echo "[ERROR] .zshrc has syntax errors. Aborting shell switch."
+    exit 1
+fi
+
+echo "=== Testing .zshrc runtime (zsh -x) ==="
+if zsh -x -c "source $ZSHRC_TEST" >/dev/null 2>&1; then
+    echo "[OK] .zshrc runs without errors."
+else
+    echo "[ERROR] .zshrc runtime error detected. Aborting shell switch."
+    exit 1
+fi
+
 echo "=== Setting zsh as default shell ==="
 if [[ "$SHELL" != "$(which zsh)" ]]; then
     if ! grep -q "$(which zsh)" /etc/shells; then
