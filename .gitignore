@@ -1,13 +1,11 @@
-# OS files
+# ==============================
+# OS / System Files
+# ==============================
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
+desktop.ini
 ehthumbs.db
 Thumbs.db
-desktop.ini
-
-# Build/dependency directories
-node_modules
-venv
