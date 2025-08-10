@@ -28,6 +28,17 @@ alias glog='git log --oneline --graph --decorate' # Pretty git log
 alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
 
+# ----- Prompt colors -----
+# Define colors
+GREEN='%F{green}'
+RESET='%f'
+
+# For subtle pink, use 256-color escape sequence
+PINK=$'%{\e[38;5;182m%}'
+RESET_COLOR=$'%{\e[0m%}'
+
+PROMPT="${GREEN}%m:%n${RESET} ${PINK}%~${RESET_COLOR} \$ "
+
 # ----- zsh-autosuggestions -----
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
