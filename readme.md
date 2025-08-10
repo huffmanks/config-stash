@@ -1,6 +1,6 @@
 ## Copy dotfiles
 
-- macOS
+- Android
 
   ```sh
   bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) android
