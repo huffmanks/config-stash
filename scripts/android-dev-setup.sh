@@ -50,7 +50,7 @@ download_file ".gitignore"
 download_file "android.zshrc" ".zshrc"
 
 echo "=== Installing zsh-autosuggestions from GitHub ==="
-ZSH_AUTOSUGGESTIONS_DIR="$HOME/.zsh"
+ZSH_AUTOSUGGESTIONS_DIR="$HOME/.zsh/zsh-autosuggestions"
 if [[ -d "$ZSH_AUTOSUGGESTIONS_DIR" ]]; then
     echo "[SKIP] zsh-autosuggestions already cloned at $ZSH_AUTOSUGGESTIONS_DIR"
 else
@@ -58,7 +58,7 @@ else
 fi
 
 echo "=== Installing zsh-syntax-highlighting from GitHub ==="
-ZSH_SYNTAX_HIGHLIGHTING_DIR="$HOME/.zsh"
+ZSH_SYNTAX_HIGHLIGHTING_DIR="$HOME/.zsh/zsh-syntax-highlighting"
 if [[ -d "$ZSH_SYNTAX_HIGHLIGHTING_DIR" ]]; then
     echo "[SKIP] zsh-syntax-highlighting already cloned at $ZSH_SYNTAX_HIGHLIGHTING_DIR"
 else

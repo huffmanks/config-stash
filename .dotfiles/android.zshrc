@@ -29,8 +29,8 @@ alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
 
 # ----- zsh-autosuggestions -----
-source ~/.zsh/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ----- zsh-syntax-highlighting -----
 # Must be last
-source ~/.zsh/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
