@@ -2,7 +2,7 @@
 set -e
 
 if [[ $# -ne 1 ]]; then
-    echo "Usage: $0 <macos|linux>"
+    echo "Usage: $0 <macos|linux|android>"
     exit 1
 fi
 
@@ -28,9 +28,14 @@ case "$OS_TYPE" in
         copy_file ".gitignore"
         copy_file "linux.zshrc" ".zshrc"
         ;;
+    android)
+        copy_file ".gitconfig"
+        copy_file ".gitignore"
+        copy_file "android.zshrc" ".zshrc"
+        ;;
     *)
         echo "Invalid option: $OS_TYPE"
-        echo "Usage: $0 <macos|linux>"
+        echo "Usage: $0 <macos|linux|android>"
         exit 1
         ;;
 esac

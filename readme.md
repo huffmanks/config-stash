@@ -3,13 +3,19 @@
 - macOS
 
   ```sh
-  bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) macos
+  bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) android
   ```
 
 - Linux
 
   ```sh
   bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) linux
+  ```
+
+- macOS
+
+  ```sh
+  bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) macos
   ```
 
 ## Android dev setup

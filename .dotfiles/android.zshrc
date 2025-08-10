@@ -31,13 +31,15 @@ alias rg='grep -rHn'                  # Recursive, display filename and line num
 # ----- Prompt colors -----
 # Define colors
 GREEN='%F{green}'
-RESET='%f'
-
-# For subtle pink, use 256-color escape sequence
 PINK=$'%{\e[38;5;182m%}'
+RESET='%f'
 RESET_COLOR=$'%{\e[0m%}'
 
-PROMPT="${GREEN}%m:%n${RESET} ${PINK}%~${RESET_COLOR} \$ "
+# Bold on/off
+BOLD_ON='%B'
+BOLD_OFF='%b'
+
+PROMPT="${BOLD_ON}${GREEN}%m:%n${RESET}${BOLD_OFF} ${BOLD_ON}${PINK}%~${RESET_COLOR}${BOLD_OFF} \$ "
 
 # ----- zsh-autosuggestions -----
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
