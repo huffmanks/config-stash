@@ -1,6 +1,13 @@
 # ==============================
-# Linux .zshrc
+# Android .zshrc
 # ==============================
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt inc_append_history
+setopt share_history
 
 # ----- Aliases -----
 # Opinionated defaults
