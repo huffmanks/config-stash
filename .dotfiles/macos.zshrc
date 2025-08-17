@@ -1,32 +1,32 @@
-# Plugins
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ==============================
+# macOS .zshrc
+# ==============================
 
-# nvm
+# ----- NVM -----
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf "%s" "${HOME}/.nvm" || printf "%s" "${XDG_CONFIG_HOME}/nvm")"
-# Lazy load
+# Remove --no-use to disable lazy load
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
-# Docker completions
+# ----- Docker -----
 fpath=($HOME/.docker/completions $fpath)
 
-# pipx
+# ----- PIPX -----
 export PATH="$HOME/.local/bin:$PATH"
 
-# pnpm
+# ----- PNPM -----
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
-# Java & Android Studio environment variables
+# ----- Java & Android Studio -----
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# ----- Aliases -----
 # Opinionated defaults
 alias ls='ls -A'                      # List all entries except . and ..
 alias grep='grep --color=auto'        # Shows matches in color
@@ -47,7 +47,16 @@ alias gc='git commit'                 # Commit staged changes
 alias gp='git push'                   # Push commits to a remote repository
 alias gd='git diff'                   # Show unstaged differences since last commit
 alias glog='git log --oneline --graph --decorate' # Pretty git log
+alias gr='git restore .'              # Discard all changes in tracked files
+alias gsu='git submodule update --remote --merge'  # Update submodules to latest remote commit with merge
 
 # Shawtys
 alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
+
+# ----- Plugins -----
+# --- zsh-autosuggestions ---
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# --- zsh-syntax-highlighting ---
+# Must be last
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

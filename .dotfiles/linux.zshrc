@@ -2,6 +2,7 @@
 # Linux .zshrc
 # ==============================
 
+# ----- Config -----
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -9,11 +10,11 @@ setopt append_history
 setopt inc_append_history
 setopt share_history
 
-# ----- NVM Setup -----
+# ----- NVM -----
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
-# ----- PNPM Setup -----
+# ----- PNPM -----
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
@@ -41,18 +42,17 @@ alias gc='git commit'                 # Commit staged changes
 alias gp='git push'                   # Push commits to a remote repository
 alias gd='git diff'                   # Show unstaged differences since last commit
 alias glog='git log --oneline --graph --decorate' # Pretty git log
+alias gr='git restore .'              # Discard all changes in tracked files
+alias gsu='git submodule update --remote --merge'  # Update submodules to latest remote commit with merge
 
 # Shawtys
 alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
 
-# ----- zsh-autosuggestions -----
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+# ----- Plugins -----
+# --- zsh-autosuggestions ---
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# ----- zsh-syntax-highlighting -----
+# --- zsh-syntax-highlighting ---
 # Must be last
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

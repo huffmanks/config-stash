@@ -2,6 +2,7 @@
 # Android .zshrc
 # ==============================
 
+# ----- Config -----
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -30,6 +31,8 @@ alias gc='git commit'                 # Commit staged changes
 alias gp='git push'                   # Push commits to a remote repository
 alias gd='git diff'                   # Show unstaged differences since last commit
 alias glog='git log --oneline --graph --decorate' # Pretty git log
+alias gr='git restore .'              # Discard all changes in tracked files
+alias gsu='git submodule update --remote --merge'  # Update submodules to latest remote commit with merge
 
 # Shawtys
 alias hg='history | grep'             # Search history
@@ -48,9 +51,10 @@ BOLD_OFF='%b'
 
 PROMPT="${BOLD_ON}${GREEN}%m:%n${RESET}${BOLD_OFF} ${BOLD_ON}${TEAL}%~${RESET_COLOR}${BOLD_OFF} \$ "
 
-# ----- zsh-autosuggestions -----
+# ----- Plugins -----
+# --- zsh-autosuggestions ---
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# ----- zsh-syntax-highlighting -----
+# --- zsh-syntax-highlighting ---
 # Must be last
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
