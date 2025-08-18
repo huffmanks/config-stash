@@ -57,6 +57,7 @@ alias rg='grep -rHn'                  # Recursive, display filename and line num
 # ----- Plugins -----
 # --- zsh-autosuggestions ---
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # --- zsh-syntax-highlighting ---
 # Must be last
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
