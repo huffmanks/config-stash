@@ -31,7 +31,7 @@ alias gc='git commit'                 # Commit staged changes
 alias gp='git push'                   # Push commits to a remote repository
 alias gd='git diff'                   # Show unstaged differences since last commit
 alias glog='git log --oneline --graph --decorate' # Pretty git log
-alias gr='git restore .'              # Discard all changes in tracked files
+alias gfu='git fetch origin && git reset --hard origin/main && git clean -fd'  # Force update: reset local branch and files to match remote
 alias gsu='git submodule update --remote --merge'  # Update submodules to latest remote commit with merge
 
 # Shawtys
