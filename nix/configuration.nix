@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, specialArgs, ... }:
 
 let
-  home = config.specialArgs.home;
+  home = specialArgs.home;
 in
 {
   imports = [

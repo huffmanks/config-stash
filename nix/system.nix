@@ -1,7 +1,7 @@
-{ config, ... }:
+{ config, pkgs, specialArgs, ... }:
 
 let
-  home = config.specialArgs.home;
+  home = specialArgs.home;
 in
 {
   # Global
@@ -56,7 +56,7 @@ in
   system.defaults.spaces.spans-displays = false;
 
   # Miscellaneous
-  security.pam.services.sudo_local.touchIdAuth = true;
+  #security.pam.services.sudo_local.touchIdAuth = true; # Enable if TouchID exists
   system.defaults.screencapture.location = "~/Documents/screenshots";
   system.defaults.controlcenter.Bluetooth = true;
 
