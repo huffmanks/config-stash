@@ -1,0 +1,117 @@
+# 1. Source Control & OS Artifacts
+# ----------------------------------------------------
+.git
+.gitignore
+.gitmodules
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.bak
+*.tmp
+tmp/
+README.md
+todo.md
+
+# 2. Build Artifacts, Compiled Code & Output Directories
+# ----------------------------------------------------
+node_modules/
+.pnpm-store/
+bun.lockb
+
+# General/Shared Build Artifacts
+out/
+dist/
+build/
+*.log
+npm-debug.log
+yarn-error.log
+*.pyc
+__pycache__/
+.venv/
+venv/
+bin/
+obj/
+
+# Framework-Specific Build Artifacts
+.next/
+.svelte-kit/
+.solid/
+.astro/
+.nuxt/
+.tanstack/
+*.gen.*
+*tsconfig.json
+*.tsbuildinfo
+*-env.d.ts
+
+# 3. Security & Sensitive Files
+# ----------------------------------------------------
+# Environment Variables
+example*.env*
+.env*example*
+.npmrc
+.yarnrc
+.pnpmrc
+
+# Keys & Certificates
+*.pem
+*.key
+*.crt
+*.pfx
+*.jks
+*.p12
+id_rsa
+
+# 4. Local Development, Cache & Database Files
+# ----------------------------------------------------
+public/
+uploads/
+.cache/
+
+# Database Files
+*.sqlite3
+*.sqlite
+*.db
+*.sdb
+.drizzle/
+prisma/migrations/
+prisma/dev.db
+
+# 5. Configuration & Tooling Files
+# ----------------------------------------------------
+# Linters, Formatters, & Code Quality
+.editorconfig
+.eslint*
+eslint.config.*
+.prettierrc*
+prettier.config.*
+.biomeignore
+biome.json
+
+# TypeScript/JavaScript Compilers & Bundlers
+babel.config.*
+webpack.config.*
+rollup.config.*
+vite.config.*
+tailwind.config.*
+
+# Test Runners
+jest.config.*
+vitest.config.*
+
+# 6. System, Package & Docker Files
+# ----------------------------------------------------
+# System Specifics (often included in Homebrew/APT environments)
+/var/
+/etc/
+/usr/
+*.deb
+*.rpm
+*.dmg
+
+# Docker
+Dockerfile
+*compose*.yml
+*compose*.yaml
+.dockerignore

@@ -1,0 +1,131 @@
+{
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "args": ["-l"],
+      "path": "/bin/zsh"
+    }
+  },
+  "terminal.integrated.profiles.windows": {
+    "Command Prompt": {
+      "args": [],
+      "icon": "terminal-cmd",
+      "path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"]
+    },
+    "GitBash": {
+      "icon": "terminal-bash",
+      "path": ["C:\\Program Files\\Git\\bin\\bash.exe"],
+      "source": "Git Bash"
+    }
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.formatOnSave": false
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "autopep8.args": ["--max-line-length", "120", "--experimental"],
+  "biome.requireConfiguration": true,
+  "biome.suggestInstallingGlobally": false,
+  "chat.commandCenter.enabled": false,
+  "css.lint.unknownAtRules": "ignore",
+  "diffEditor.wordWrap": "on",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleImplementations": "goto",
+  "editor.lightbulb.enabled": "off",
+  "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": false,
+  "editor.stickyScroll.maxLineCount": 1,
+  "editor.wordWrap": "on",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "mjml": "html",
+    "mdx": "typescriptreact"
+  },
+  "explorer.compactFolders": false,
+  "extensions.ignoreRecommendations": true,
+  "files.associations": {
+    "*.astro": "astro",
+    "*.css": "tailwindcss",
+    "_redirects": "plaintext",
+    "*.mdx": "mdx"
+  },
+  "files.insertFinalNewline": false,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "html.format.enable": true,
+  "html.format.preserveNewLines": false,
+  "html.format.wrapLineLength": 0,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "javascript.format.semicolons": "insert",
+  "javascript.preferences.quoteStyle": "double",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "material-icon-theme.activeIconPack": "react_redux",
+  "palettePaste.defaultDateFormat": "Unix",
+  "prettier.arrowParens": "always",
+  "prettier.bracketSameLine": true,
+  "prettier.jsxSingleQuote": false,
+  "prettier.printWidth": 200,
+  "prettier.semi": true,
+  "prettier.singleQuote": false,
+  "prettier.tabWidth": 2,
+  "prettier.useEditorConfig": false,
+  "reactSnippets.settings.importReactOnTop": false,
+  "reactSnippets.settings.prettierEnabled": true,
+  "redhat.telemetry.enabled": false,
+  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-wsl"],
+  "tailwindCSS.experimental.classRegex": ["class:\\s*?[\"'`]([^\"'`]*).*?,", "className:\\s*?[\"'`]([^\"'`]*).*?,"],
+  "typescript.format.semicolons": "insert",
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "typescript.suggest.autoImports": true,
+  "typescript.tsdk": "/Users/$USER/.nvm/versions/node/v$VERSION/lib/node_modules/typescript/lib",
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.editor.enablePreview": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none",
+  "workbench.tree.enableStickyScroll": false,
+  "workbench.editorAssociations": {
+    "*.plist": "default",
+    "*.svg": "default"
+  },
+  "docker.extension.enableComposeLanguageServer": false,
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  }
+}

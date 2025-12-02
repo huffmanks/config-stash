@@ -1,0 +1,131 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.3/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true,
+		"defaultBranch": "main"
+	},
+	"files": {
+		"ignoreUnknown": false
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineWidth": 100,
+		"attributePosition": "auto"
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"complexity": {
+				"useArrowFunction": "error"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"bracketSameLine": false,
+			"bracketSpacing": true,
+			"jsxQuoteStyle": "double",
+			"quoteStyle": "double",
+			"semicolons": "always",
+			"trailingCommas": "all",
+			"attributePosition": "auto"
+		}
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	},
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							[":BUN:", ":NODE:"],
+							":BLANK_LINE:",
+							[
+								"astro",
+                                "astro*/**",
+                                "@astro*/**",
+                                "bun",
+                                "bun*/**",
+                                "@bun*/**",
+                                "deno",
+                                "deno*/**",
+                                "@deno*/**",
+                                "electron",
+                                "electron*/**",
+                                "@electron*/**",
+                                "expo",
+                                "expo*/**",
+                                "@expo*/**",
+                                "hono",
+                                "hono*/**",
+                                "@hono*/**",
+                                "next",
+                                "next*/**",
+                                "@next*/**",
+                                "nitro",
+                                "nitro*/**",
+                                "@nitro*/**",
+                                "node",
+                                "node*/**",
+                                "@node*/**",
+                                "nuxt",
+                                "nuxt*/**",
+                                "@nuxt*/**",
+                                "react",
+                                "react*/**",
+                                "@react*/**",
+                                "react-native",
+                                "react-native*/**",
+                                "@react-native*/**",
+                                "remix",
+                                "remix*/**",
+                                "@remix*/**",
+                                "solid",
+                                "solid*/**",
+                                "@solid*/**",
+                                "solidstart",
+                                "solidstart*/**",
+                                "@solidstart*/**",
+                                "svelte",
+                                "svelte*/**",
+                                "@svelte*/**",
+                                "sveltekit",
+                                "sveltekit*/**",
+                                "@sveltekit*/**",
+                                "tanstack",
+                                "tanstack*/**",
+                                "@tanstack*/**",
+                                "vite",
+                                "vite*/**",
+                                "@vite*/**",
+                                "vue",
+                                "vue*/**",
+                                "@vue*/**"
+							],
+							":BLANK_LINE:",
+							":PACKAGE:",
+							":BLANK_LINE:",
+							["@/client/**", "@/server/**", "@/shared/**", "@/actions/**", "@/db/**", "@/lib/**" ,"@/hooks/**"],
+							":BLANK_LINE:",
+							":ALIAS:",
+							":BLANK_LINE:",
+							"server*"
+						]
+					}
+				},
+				"useSortedProperties": "on"
+			}
+		}
+	}
+}

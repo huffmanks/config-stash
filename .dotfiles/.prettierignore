@@ -1,0 +1,20 @@
+# 1. Packages & Lock Files
+# ----------------------------------------------------
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lockb
+
+# 2. Generated & Auto-maintained Files
+# ----------------------------------------------------
+*.gen.*
+generated/
+*-env.d.ts
+
+# 3. Static Assets
+# ----------------------------------------------------
+public/
+assets/
+migrations/
+uploads/
