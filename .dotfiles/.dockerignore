@@ -41,7 +41,6 @@ obj/
 .nuxt/
 .tanstack/
 *.gen.*
-*tsconfig.json
 *.tsbuildinfo
 *-env.d.ts
 
@@ -65,7 +64,6 @@ id_rsa
 
 # 4. Local Development, Cache & Database Files
 # ----------------------------------------------------
-public/
 uploads/
 .cache/
 
@@ -88,13 +86,6 @@ eslint.config.*
 prettier.config.*
 .biomeignore
 biome.json
-
-# TypeScript/JavaScript Compilers & Bundlers
-babel.config.*
-webpack.config.*
-rollup.config.*
-vite.config.*
-tailwind.config.*
 
 # Test Runners
 jest.config.*
