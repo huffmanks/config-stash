@@ -52,24 +52,46 @@ alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
 
 # ----- Prompt styles -----
-# Style vars
-BOLD_ON='%B'
-BOLD_OFF='%b'
-GRAY='%F{244}'
-GREEN='%F{green}'
-PURPLE='%F{92}'
-WHITE='%F{white}'
-RESET='%f%b'
+if [ "$TERM" = "xterm" ]; then
+  export TERM="xterm-256color"
+fi
+setopt PROMPT_SUBST
 
-# Host colors
-BLUE='%F{75}'
-ORANGE='%F{208}'
-RED='%F{196}'
+get_git_root_name() {
+  local root=$(git rev-parse --show-toplevel 2> /dev/null)
+  echo "${root:t}"
+}
 
-# Main Prompt: user(GREEN) @ host("BLUE" | "ORANGE" | "RED") : path(PURPLE) $(WHITE)
-PROMPT="${BOLD_ON}${GREEN}%n${GRAY}@${RED}%m${GRAY}:${PURPLE}%~${WHITE}\$${RESET} "
-# Right Prompt: [Time]
-RPROMPT="${GRAY}[%D{%H:%M:%S}]${RESET}"
+# Logic for the middle section (Host:Path OR GitRoot)
+get_middle_section() {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    # In Git: Magenta Git Root Name
+    echo "%F{magenta}$(get_git_root_name)%f"
+  else
+    # Not in Git: Magenta Hostname + Cyan Path
+    local path_out="%/"
+    [[ "$PWD" == "$HOME" ]] || [[ "$PWD" == "$HOME"/* ]] && path_out="%~"
+    echo "%F{magenta}%m%f %F{cyan}${path_out}%f"
+  fi
+}
+
+# Git Info (Branch name)
+git_branch_info() {
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    return
+  fi
+  local ref=$(git branch --show-current 2> /dev/null)
+  [[ -z $ref ]] && ref=$(git rev-parse --short HEAD 2> /dev/null)
+
+  # Purple 'git:(' then Red 'branch' then Purple ')'
+  echo "%F{blue}%Bgit:(%b%F{red}${ref}%F{blue})%f "
+}
+
+# Left Prompt Construction
+PROMPT='%(?.%F{green}%B>%b.%F{red}%B>%b) $(get_middle_section) $(git_branch_info)%F{yellow}$%f '
+
+# Right Prompt (Gray time)
+RPROMPT='%F{242}[%D{%H:%M:%S}]%f'
 
 # ----- Plugins -----
 # --- zsh-autosuggestions ---

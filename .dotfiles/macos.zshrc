@@ -57,12 +57,43 @@ alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
 
 # ----- Prompt styles -----
-# Style vars
-GRAY='%F{244}'
-RESET='%f%b'
+setopt PROMPT_SUBST
 
-# Right Prompt: [Time]
-RPROMPT="${GRAY}[%D{%H:%M:%S}]${RESET}"
+get_git_root_name() {
+  local root=$(git rev-parse --show-toplevel 2> /dev/null)
+  echo "${root:t}"
+}
+
+# Logic for the middle section (Host:Path OR GitRoot)
+get_middle_section() {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    # In Git: Magenta Git Root Name
+    echo "%F{magenta}$(get_git_root_name)%f"
+  else
+    # Not in Git: Magenta Hostname + Cyan Path
+    local path_out="%/"
+    [[ "$PWD" == "$HOME" ]] || [[ "$PWD" == "$HOME"/* ]] && path_out="%~"
+    echo "%F{magenta}%m%f %F{cyan}${path_out}%f"
+  fi
+}
+
+# Git Info (Branch name)
+git_branch_info() {
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    return
+  fi
+  local ref=$(git branch --show-current 2> /dev/null)
+  [[ -z $ref ]] && ref=$(git rev-parse --short HEAD 2> /dev/null)
+
+  # Purple 'git:(' then Red 'branch' then Purple ')'
+  echo "%F{blue}%Bgit:(%b%F{red}${ref}%F{blue})%f "
+}
+
+# Left Prompt Construction
+PROMPT='%(?.%F{green}%B>%b.%F{red}%B>%b) $(get_middle_section) $(git_branch_info)%F{yellow}$%f '
+
+# Right Prompt (Gray time)
+RPROMPT='%F{242}[%D{%H:%M:%S}]%f'
 
 # ----- Plugins -----
 # --- zsh-autosuggestions ---
