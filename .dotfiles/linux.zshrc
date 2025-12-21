@@ -49,10 +49,30 @@ alias gsu='git submodule update --remote --merge'  # Update submodules to latest
 alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
 
+# ----- Prompt styles -----
+# Style vars
+BOLD_ON='%B'
+BOLD_OFF='%b'
+GRAY='%F{244}'
+GREEN='%F{green}'
+PURPLE='%F{92}'
+WHITE='%F{white}'
+RESET='%f%b'
+
+# Host colors
+BLUE='%F{75}'
+ORANGE='%F{208}'
+RED='%F{196}'
+
+# Main Prompt: user(GREEN) @ host("BLUE" | "ORANGE" | "RED") : path(PURPLE) $(WHITE)
+PROMPT="${BOLD_ON}${GREEN}%n${GRAY}@${RED}%m${GRAY}:${PURPLE}%~${WHITE}\$${RESET} "
+# Right Prompt: [Time]
+RPROMPT="${GRAY}[%D{%H:%M:%S}]${RESET}"
+
 # ----- Plugins -----
 # --- zsh-autosuggestions ---
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # --- zsh-syntax-highlighting ---
 # Must be last
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
