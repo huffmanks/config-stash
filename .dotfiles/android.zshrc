@@ -2,6 +2,8 @@
 # Android .zshrc
 # ==============================
 
+export TZ="America/New_York"
+
 # ----- Config -----
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
