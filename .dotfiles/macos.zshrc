@@ -54,6 +54,14 @@ alias gsu='git submodule update --remote --merge'  # Update submodules to latest
 alias hg='history | grep'             # Search history
 alias rg='grep -rHn'                  # Recursive, display filename and line number
 
+# ----- Prompt styles -----
+# Style vars
+GRAY='%F{244}'
+RESET='%f%b'
+
+# Right Prompt: [Time]
+RPROMPT="${GRAY}[%D{%H:%M:%S}]${RESET}"
+
 # ----- Plugins -----
 # --- zsh-autosuggestions ---
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
