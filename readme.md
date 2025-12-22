@@ -1,22 +1,20 @@
 ## Copy dotfiles
 
-- Android
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/get-dotfiles.sh)
+```
 
-  ```sh
-  bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) android
-  ```
-
-- Linux
-
-  ```sh
-  bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) linux
-  ```
-
-- macOS
-
-  ```sh
-  bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/copy-dotfiles.sh) macos
-  ```
+```sh
+# export args
+--all-exports             # Add all exports
+--bun                     # Add Bun
+--docker                  # Add Docker
+--go                      # Add Go
+--java-android-studio     # Add Java & Android Studio
+--nvm                     # Add nvm
+--pipx                    # Add pipx
+--pnpm                    # Add pnpm
+```
 
 ## Android dev setup
 

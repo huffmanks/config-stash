@@ -9,18 +9,23 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf "%s" "${HOME}/.nvm" || 
 # Remove --no-use to disable lazy load
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
-# ----- Docker -----
-fpath=($HOME/.docker/completions $fpath)
-
-# ----- PIPX -----
-export PATH="$HOME/.local/bin:$PATH"
-
 # ----- PNPM -----
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+# ----- Bun -----
+[ -s "/Users/huffmanks/.bun/_bun" ] && source "/Users/huffmanks/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# ----- Docker -----
+fpath=($HOME/.docker/completions $fpath)
+
+# ----- PIPX -----
+export PATH="$HOME/.local/bin:$PATH"
 
 # ----- Java & Android Studio -----
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
@@ -59,46 +64,64 @@ alias rg='grep -rHn'                  # Recursive, display filename and line num
 # ----- Prompt styles -----
 setopt PROMPT_SUBST
 
-get_git_root_name() {
-  local root=$(git rev-parse --show-toplevel 2> /dev/null)
-  echo "${root:t}"
+# Helper to get Git info in one go to prevent cursor lag
+get_git_info() {
+  # Check if we are in a git repo once
+  local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+  [[ -z "$git_root" ]] && return
+
+  local ref=$(git branch --show-current 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+
+  # Output the formatted string: git:(branch)
+  # Wrapped in %{ %} to tell Zsh these are non-printing characters
+  echo "%{%F{blue}%B%}git:(%{%b%F{red}%}${ref}%{%F{blue}%})%{%f%} "
 }
 
 # Logic for the middle section (Host:Path OR GitRoot)
 get_middle_section() {
-  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    # In Git: Magenta Git Root Name
-    echo "%F{magenta}$(get_git_root_name)%f"
+  local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+
+  if [[ -n "$git_root" ]]; then
+    # In Git: Magenta Git Root Name (basename of the root path)
+    echo "%F{magenta}${git_root:t}%f"
   else
     # Not in Git: Magenta Hostname + Cyan Path
-    local path_out="%/"
-    [[ "$PWD" == "$HOME" ]] || [[ "$PWD" == "$HOME"/* ]] && path_out="%~"
+    local path_out="%~"
     echo "%F{magenta}%m%f %F{cyan}${path_out}%f"
   fi
 }
 
-# Git Info (Branch name)
-git_branch_info() {
-  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    return
-  fi
-  local ref=$(git branch --show-current 2> /dev/null)
-  [[ -z $ref ]] && ref=$(git rev-parse --short HEAD 2> /dev/null)
-
-  # Purple 'git:(' then Red 'branch' then Purple ')'
-  echo "%F{blue}%Bgit:(%b%F{red}${ref}%F{blue})%f "
-}
-
 # Left Prompt Construction
-PROMPT='%(?.%F{green}%B>%b.%F{red}%B>%b) $(get_middle_section) $(git_branch_info)%F{yellow}$%f '
+# Using %{ %} around the dynamic functions ensures the cursor doesn't drift
+PROMPT='%(?.%F{green}%B>%b.%F{red}%B>%b) $(get_middle_section) $(get_git_info)%F{yellow}$%f '
 
 # Right Prompt (Gray time)
 RPROMPT='%F{242}[%D{%H:%M:%S}]%f'
 
+# Ensure the cursor remains a blinking block (common fix for Ubuntu/GNOME terminal)
+echo -ne '\e[1 q'
+
 # ----- Plugins -----
+# --- macOS Apple silicon arm64 ---
 # --- zsh-autosuggestions ---
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
 
 # --- zsh-syntax-highlighting ---
 # Must be last
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+# --- macOS Intel x86_64 ---
+# --- zsh-autosuggestions ---
+if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
+# --- zsh-syntax-highlighting ---
+# Must be last
+if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
