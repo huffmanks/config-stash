@@ -1,5 +1,5 @@
 # =====================================
-# .zprofile (macOS Apple silicon arm64)
+# .zprofile (macOS:arm64)
 # =====================================
 
 # ----- Homebrew -----

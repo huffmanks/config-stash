@@ -1,5 +1,5 @@
 # =====================================
-# Plugins (macOS Apple silicon arm64)
+# Plugins (macOS:arm64)
 # =====================================
 
 # ----- zsh-autosuggestions -----

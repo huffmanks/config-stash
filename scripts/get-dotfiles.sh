@@ -2,7 +2,7 @@
 set -e
 
 REPO_URL="https://raw.githubusercontent.com/huffmanks/config-stash/main/.dotfiles"
-ZSHRC_LOCAL="$HOME/.zshrc.test"
+ZSHRC_LOCAL="$HOME/.zshrc"
 
 # Detect OS and Architecture
 OS_NAME=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -35,7 +35,8 @@ done
 
 # Helper: Print remote file content to stdout
 get_content() {
-    local path="$1"
+    local title="$1"
+    local path="$2"
     local url="$REPO_URL/$path"
 
     # Get HTTP status and content separately
@@ -46,11 +47,11 @@ get_content() {
         local content
         content=$(cat /tmp/dotfile_part)
         if [[ -n "$content" ]]; then
-            printf "%s\n\n\n" "$content"
-            echo "[OK] Merged $path" >&2
+            printf "%s\n\n" "$content"
+            echo "[MERGED] $title ==> .zshrc" >&2
         fi
     else
-        echo "[SKIP] $path (Status: $response)" >&2
+        echo "[SKIP] $title ==> (Status: $response)" >&2
     fi
     rm -f /tmp/dotfile_part
 }
@@ -61,32 +62,29 @@ fetch_to_file() {
     local local_path="$2"
 
     if curl -fsSL -I "$REPO_URL/$remote_path" >/dev/null 2>&1; then
-        echo "[COPY] $remote_path > $local_path"
+        echo "[COPY] $remote_path ==> $local_path"
         curl -fsSL "$REPO_URL/$remote_path" -o "$local_path"
     else
-        echo "[SKIP] $remote_path (Not found in repo)" >&2
+        echo "[SKIP] $remote_path ==> (Not found in repo)" >&2
     fi
 }
 
 # Copy standalone dotfiles
-echo "[COPY] .gitconfig > $HOME/.gitconfig"
 fetch_to_file ".gitconfig" "$HOME/.gitconfig"
-
-echo "[COPY] .gitignore > $HOME/.gitignore"
 fetch_to_file ".gitignore" "$HOME/.gitignore"
-
-echo "[COPY] .zprofile > $HOME/.zprofile"
 fetch_to_file ".zsh/$OS_TYPE/$ARCH_TYPE/.zprofile" "$HOME/.zprofile"
 
 # Generate .zshrc
-echo "[BUILD] Generating .zshrc > $HOME/.zshrc"
+echo "[BUILD] Generating .zshrc"
 
 {
     # 1. Config
-    get_content ".zsh/common/config.zsh"
+    get_content "Config (common)" ".zsh/common/config.zsh"
 
     # 2. Exports
     AVAILABLE_EXPORTS=("bun" "docker" "go" "java-android-studio" "nvm" "pipx" "pnpm")
+    # Add any additional exports here that are OS-specific
+    OS_SPECIFIC_EXPORTS=("pnpm")
 
     SHOW_HEADER=false
     [[ "$ALL_EXPORTS" == true ]] && SHOW_HEADER=true
@@ -101,29 +99,30 @@ echo "[BUILD] Generating .zshrc > $HOME/.zshrc"
 
     for tool in "${AVAILABLE_EXPORTS[@]}"; do
         if [[ "$ALL_EXPORTS" == true ]] || [[ " ${SELECTED_EXPORTS[*]} " =~ " ${tool} " ]]; then
-            if [[ "$tool" == "pnpm" ]]; then
-                # pnpm is OS-specific
-                get_content ".zsh/$OS_TYPE/exports/pnpm.zsh"
+
+             # OS-specific exports
+            if [[ " ${OS_SPECIFIC_EXPORTS[*]} " =~ " ${tool} " ]]; then
+                get_content "Exports ==> ($OS_TYPE:$tool)" ".zsh/$OS_TYPE/exports/$tool.zsh"
             else
                 # Others are common
-                get_content ".zsh/common/exports/$tool.zsh"
+                get_content "Exports ==> ($tool)" ".zsh/common/exports/$tool.zsh"
             fi
         fi
     done
 
     # 3. Prompt
-    get_content ".zsh/common/prompt.zsh"
+    get_content "Prompt (common)" ".zsh/common/prompt.zsh"
 
     # 4. Aliases
-    get_content ".zsh/common/aliases.zsh"
-    # --- OS specific aliases
-    get_content ".zsh/$OS_TYPE/aliases.zsh"
+    get_content "Aliases (common)" ".zsh/common/aliases.zsh"
+    # --- OS-specific aliases
+    get_content "Aliases ($OS_TYPE)" ".zsh/$OS_TYPE/aliases.zsh"
 
     # 5. Plugins
-    # --- OS specific plugins
-    get_content ".zsh/$OS_TYPE/plugins.zsh"
-    # --- Architecture specific plugins
-    get_content ".zsh/$OS_TYPE/$ARCH_TYPE/plugins.zsh"
+    # --- OS-specific plugins
+    get_content "Plugins ($OS_TYPE)" ".zsh/$OS_TYPE/plugins.zsh"
+    # --- Architecture-specific plugins
+    get_content "Plugins ($OS_TYPE:$ARCH_TYPE)" ".zsh/$OS_TYPE/$ARCH_TYPE/plugins.zsh"
 
 } > "$ZSHRC_LOCAL"
 
