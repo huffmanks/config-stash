@@ -35,14 +35,24 @@ done
 
 # Helper: Print remote file content to stdout
 get_content() {
-    local url="$REPO_URL/$1"
-    local content
-    content=$(curl -fsSL "$url" 2>/dev/null)
+    local path="$1"
+    local url="$REPO_URL/$path"
 
-    if [[ -n "$content" ]]; then
-        echo "$content"
-        echo -e "\n"
+    # Get HTTP status and content separately
+    local response
+    response=$(curl -sL -w "%{http_code}" "$url" -o /tmp/dotfile_part)
+
+    if [[ "$response" == "200" ]]; then
+        local content
+        content=$(cat /tmp/dotfile_part)
+        if [[ -n "$content" ]]; then
+            printf "%s\n\n\n" "$content"
+            echo "[OK] Merged $path" >&2
+        fi
+    else
+        echo "[SKIP] $path (Status: $response)" >&2
     fi
+    rm -f /tmp/dotfile_part
 }
 
 # Helper: Copy standalone file only if it exists in repo
@@ -53,6 +63,8 @@ fetch_to_file() {
     if curl -fsSL -I "$REPO_URL/$remote_path" >/dev/null 2>&1; then
         echo "[COPY] $remote_path > $local_path"
         curl -fsSL "$REPO_URL/$remote_path" -o "$local_path"
+    else
+        echo "[SKIP] $remote_path (Not found in repo)" >&2
     fi
 }
 
@@ -76,11 +88,18 @@ echo "[BUILD] Generating .zshrc > $HOME/.zshrc"
     # 2. Exports
     AVAILABLE_EXPORTS=("bun" "docker" "go" "java-android-studio" "nvm" "pipx" "pnpm")
 
-    for tool in "${AVAILABLE_EXPORTS[@]}"; do
+    SHOW_HEADER=false
+    [[ "$ALL_EXPORTS" == true ]] && SHOW_HEADER=true
+    for t in "${SELECTED_EXPORTS[@]}"; do SHOW_HEADER=true; done
+
+    if [[ "$SHOW_HEADER" == true ]]; then
         echo "# ====================================="
         echo "# Exports"
         echo "# ====================================="
-        echo -e "\n"
+        echo ""
+    fi
+
+    for tool in "${AVAILABLE_EXPORTS[@]}"; do
         if [[ "$ALL_EXPORTS" == true ]] || [[ " ${SELECTED_EXPORTS[*]} " =~ " ${tool} " ]]; then
             if [[ "$tool" == "pnpm" ]]; then
                 # pnpm is OS-specific
