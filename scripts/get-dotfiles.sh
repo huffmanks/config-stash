@@ -58,11 +58,11 @@ get_content() {
         local content
         content=$(cat /tmp/dotfile_part)
         if [[ -n "$content" ]]; then
-            printf "%s\n" "$content"
+            printf "%s\n\n" "$content"
             echo "[MERGED] $title ==> .zshrc" >&2
         fi
     else
-        echo "[SKIP] $title ==> (Status: $response)" >&2
+        echo "[SKIP] $title =X= (Not found in repo)" >&2
     fi
     rm -f /tmp/dotfile_part
 }
@@ -77,7 +77,7 @@ fetch_to_file() {
         echo "[COPY] $title ==> $local_path"
         curl -fsSL "$REPO_URL/$remote_path" -o "$local_path"
     else
-        echo "[SKIP] $remote_path ==> (Not found in repo)" >&2
+        echo "[SKIP] $remote_path =X= (Not found in repo)" >&2
     fi
 }
 
