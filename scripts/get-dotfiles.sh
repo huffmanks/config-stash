@@ -20,7 +20,7 @@ else
     exit 1
 fi
 
-printf "\n----- Getting .dotfiles for ($HOST_NAME:$OS_TYPE:$ARCH_NAME) -----"
+printf "\n----- Getting .dotfiles for ($HOST_NAME:$OS_TYPE:$ARCH_NAME) -----\n"
 
 # Parse export flags
 ALL_EXPORTS=false
@@ -138,4 +138,4 @@ printf "\n[BUILD] Generating .zshrc \n\n"
 
 } > "$ZSHRC_LOCAL"
 
-printf "\n===== Setup Complete ====="
+printf "\n===== Setup Complete =====\n"
