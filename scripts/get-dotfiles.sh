@@ -20,7 +20,7 @@ else
     exit 1
 fi
 
-echo "----- Getting .dotfiles for ($HOST_NAME:$OS_TYPE:$ARCH_NAME) -----"
+printf "\n----- Getting .dotfiles for ($HOST_NAME:$OS_TYPE:$ARCH_NAME) -----"
 
 # Parse export flags
 ALL_EXPORTS=false
@@ -87,7 +87,7 @@ fetch_to_file ".gitignore" ".gitignore" "$HOME/.gitignore"
 fetch_to_file ".zprofile" ".zsh/$OS_TYPE/$ARCH_TYPE/.zprofile" "$HOME/.zprofile"
 
 # Generate .zshrc
-printf "\n [BUILD] Generating .zshrc \n\n"
+printf "\n[BUILD] Generating .zshrc \n\n"
 
 {
     # 1. Config
@@ -138,4 +138,4 @@ printf "\n [BUILD] Generating .zshrc \n\n"
 
 } > "$ZSHRC_LOCAL"
 
-echo "===== Setup Complete ====="
+printf "\n===== Setup Complete ====="
