@@ -27,9 +27,20 @@ ALL_EXPORTS=false
 SELECTED_EXPORTS=()
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --all-exports) ALL_EXPORTS=true; shift ;;
-        --*) SELECTED_EXPORTS+=("${1#--}"); shift ;;
-        *) shift ;;
+        --exports)
+            shift
+            while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
+                if [[ "$1" == "all" ]]; then
+                    ALL_EXPORTS=true
+                else
+                    SELECTED_EXPORTS+=("$1")
+                fi
+                shift
+            done
+            ;;
+        *)
+            shift
+            ;;
     esac
 done
 
@@ -47,7 +58,7 @@ get_content() {
         local content
         content=$(cat /tmp/dotfile_part)
         if [[ -n "$content" ]]; then
-            printf "%s\n\n" "$content"
+            printf "%s\n" "$content"
             echo "[MERGED] $title ==> .zshrc" >&2
         fi
     else
@@ -58,11 +69,12 @@ get_content() {
 
 # Helper: Copy standalone file only if it exists in repo
 fetch_to_file() {
-    local remote_path="$1"
-    local local_path="$2"
+    local title="$1"
+    local remote_path="$2"
+    local local_path="$3"
 
     if curl -fsSL -I "$REPO_URL/$remote_path" >/dev/null 2>&1; then
-        echo "[COPY] $remote_path ==> $local_path"
+        echo "[COPY] $title ==> $local_path"
         curl -fsSL "$REPO_URL/$remote_path" -o "$local_path"
     else
         echo "[SKIP] $remote_path ==> (Not found in repo)" >&2
@@ -70,12 +82,12 @@ fetch_to_file() {
 }
 
 # Copy standalone dotfiles
-fetch_to_file ".gitconfig" "$HOME/.gitconfig"
-fetch_to_file ".gitignore" "$HOME/.gitignore"
-fetch_to_file ".zsh/$OS_TYPE/$ARCH_TYPE/.zprofile" "$HOME/.zprofile"
+fetch_to_file ".gitconfig" ".gitconfig" "$HOME/.gitconfig"
+fetch_to_file ".gitignore" ".gitignore" "$HOME/.gitignore"
+fetch_to_file ".zprofile" ".zsh/$OS_TYPE/$ARCH_TYPE/.zprofile" "$HOME/.zprofile"
 
 # Generate .zshrc
-echo "[BUILD] Generating .zshrc"
+printf "\n [BUILD] Generating .zshrc \n\n"
 
 {
     # 1. Config
