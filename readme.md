@@ -12,6 +12,26 @@ A centralized repository designed to manage and automate the deployment of my pe
 bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/get-dotfiles.sh)
 ```
 
+### Custom install (with include)
+
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/get-dotfiles.sh) -- --include all
+```
+
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/get-dotfiles.sh) -- --include gitignore
+```
+
+### Include options
+
+| Flag      | Description           |
+| --------- | --------------------- |
+| --include | Copy configs to $HOME |
+| all       | Copy all listed below |
+| gitconfig | Copy > ~/.gitconfig   |
+| gitignore | Copy > ~/.gitignore   |
+| zprofile  | Copy > ~/.zprofile    |
+
 ### Custom install (with exports)
 
 ```sh
@@ -22,7 +42,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/
 bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/scripts/get-dotfiles.sh) -- --exports docker nvm pnpm
 ```
 
-### Config options
+### Export options
 
 | Flag                | Description                    |
 | ------------------- | ------------------------------ |

@@ -3,7 +3,6 @@
 # =====================================
 
 # ----- Opinionated defaults -----
-alias ls='ls -A'                      # List all entries except . and ..
 alias grep='grep --color=auto'        # Shows matches in color
 alias rm='rm -i'                      # Always prompt before removing files
 alias mkdir='mkdir -p'                # Automatically create parent directories as needed

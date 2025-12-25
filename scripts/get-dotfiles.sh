@@ -22,9 +22,12 @@ fi
 
 printf "\n----- Getting .dotfiles for ($HOST_NAME:$OS_TYPE:$ARCH_NAME) -----\n"
 
-# Parse export flags
+# Parse flags
 ALL_EXPORTS=false
 SELECTED_EXPORTS=()
+ALL_INCLUDES=false
+SELECTED_INCLUDES=()
+
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --exports)
@@ -34,6 +37,17 @@ while [[ $# -gt 0 ]]; do
                     ALL_EXPORTS=true
                 else
                     SELECTED_EXPORTS+=("$1")
+                fi
+                shift
+            done
+            ;;
+        --include)
+            shift
+            while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
+                if [[ "$1" == "all" ]]; then
+                    ALL_INCLUDES=true
+                else
+                    SELECTED_INCLUDES+=("$1")
                 fi
                 shift
             done
@@ -81,10 +95,18 @@ fetch_to_file() {
     fi
 }
 
-# Copy standalone dotfiles
-fetch_to_file ".gitconfig" ".gitconfig" "$HOME/.gitconfig"
-fetch_to_file ".gitignore" ".gitignore" "$HOME/.gitignore"
-fetch_to_file ".zprofile" ".zsh/$OS_TYPE/$ARCH_TYPE/.zprofile" "$HOME/.zprofile"
+# Helper check for inclusion
+should_include() {
+    local key="$1"
+    [[ "$ALL_INCLUDES" == true ]] && return 0
+    [[ " ${SELECTED_INCLUDES[*]} " =~ " ${key} " ]] && return 0
+    return 1
+}
+
+# Copy standalone dotfiles (Only if requested via --include)
+if should_include "gitconfig"; then fetch_to_file ".gitconfig" ".gitconfig" "$HOME/.gitconfig"; fi
+if should_include "gitignore"; then fetch_to_file ".gitignore" ".gitignore" "$HOME/.gitignore"; fi
+if should_include "zprofile"; then fetch_to_file ".zprofile" ".zsh/$OS_TYPE/$ARCH_TYPE/.zprofile" "$HOME/.zprofile"; fi
 
 # Generate .zshrc
 printf "\n[BUILD] Generating .zshrc \n\n"
@@ -92,6 +114,8 @@ printf "\n[BUILD] Generating .zshrc \n\n"
 {
     # 1. Config
     get_content "Config (common)" ".zsh/common/config.zsh"
+    # --- OS-specific config
+    get_content "Config ($OS_TYPE)" ".zsh/$OS_TYPE/config.zsh"
 
     # 2. Exports
     AVAILABLE_EXPORTS=("bun" "docker" "go" "java-android-studio" "nvm" "pipx" "pnpm")
