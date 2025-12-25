@@ -11,28 +11,28 @@ get_git_info() {
   local ref=$(git branch --show-current 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
 
   # Output the formatted string: git:(branch)
-  echo "%{%F{blue}%B%}git:(%{%b%F{red}%}${ref}%{%F{blue}%})%{%f%} "
+  echo "%{%F{blue}%}git:(%{%F{green}%}${ref}%{%F{blue}%})%{%f%} "
 }
 
-# ----- Middle section (Host:Path OR GitRoot) -----
+# ----- Middle section (host, path, git) -----
 get_middle_section() {
   local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
 
   if [[ -n "$git_root" ]]; then
-    # In Git: Magenta Git Root Name (basename of the root path)
-    echo "%F{magenta}${git_root:t}%f"
+    # Git path
+    echo "%F{magenta}%m%f %F{cyan}${git_root:t}%f"
   else
-    # Not in Git: Magenta Hostname + Cyan Path
+    # Not Git path
     local path_out="%~"
     echo "%F{magenta}%m%f %F{cyan}${path_out}%f"
   fi
 }
 
-# ----- Left prompt -----
-PROMPT='%(?.%F{green}%B>%b.%F{red}%B>%b) $(get_middle_section) $(get_git_info)%F{yellow}$%f '
-
-# ----- Right prompt (time) -----
-RPROMPT='%F{242}[%D{%H:%M:%S}]%f'
+# ----- Prompt -----
+# Line 1: ╭ host (magenta), path (cyan), git info (blue, visually purple), time (gray)
+# Line 2: ╰ username:# (red) or username:$ (yellow)
+PROMPT='%(!.%F{red}.%F{yellow})╭%f $(get_middle_section) $(get_git_info)%F{242}[%D{%H:%M:%S}]%f
+%(!.%F{red}.%F{yellow})╰%f %(!.%F{red}root:#.%F{yellow}%n:$)%f '
 
 # ----- Ensure blinking cursor -----
 echo -ne '\e[1 q'
