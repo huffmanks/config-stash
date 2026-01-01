@@ -2,5 +2,6 @@
 # .zprofile (macOS:x86_64)
 # =====================================
 
-# ----- Homebrew -----
-eval "$(/usr/local/bin/brew shellenv)"
+# ----- MacPorts -----
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export MANPATH="/opt/local/share/man:$MANPATH"

@@ -15,4 +15,6 @@ SAVEHIST=10000
 setopt append_history
 setopt inc_append_history
 setopt share_history
+setopt hist_ignore_all_dups
+unsetopt hist_ignore_space
 setopt PROMPT_SUBST
