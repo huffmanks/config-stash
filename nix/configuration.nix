@@ -16,7 +16,9 @@ in
 
   # System packages
   # environment.systemPackages = with pkgs; [
+  #   fd
   #   ffmpeg
+  #   fzf
   #   jq
   #   bat
   #   gh

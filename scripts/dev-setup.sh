@@ -91,7 +91,9 @@ case "$OS_TYPE" in
         fi
         ;;
     linux)
+        install_if_missing fd
         install_if_missing ffmpeg
+        install_if_missing fzf
         install_if_missing jq
         install_if_missing zsh-syntax-highlighting
         install_if_missing zsh-autosuggestions

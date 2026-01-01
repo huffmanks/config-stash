@@ -50,6 +50,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/huffmanks/config-stash/main/
 | all                 | Enable every tool listed below |
 | bun                 | Bun environment exports        |
 | docker              | Docker aliases and paths       |
+| fzf                 | fzf cli fuzzy finder           |
 | go                  | Go (GOPATH/bin) exports        |
 | java-android-studio | Java and Android Studio paths  |
 | nvm                 | Node Version Manager config    |

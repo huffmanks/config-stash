@@ -118,7 +118,7 @@ printf "\n[BUILD] Generating .zshrc \n\n"
     get_content "Config ($OS_TYPE)" ".zsh/$OS_TYPE/config.zsh"
 
     # 2. Exports
-    AVAILABLE_EXPORTS=("bun" "docker" "go" "java-android-studio" "nvm" "pipx" "pnpm")
+    AVAILABLE_EXPORTS=("bun" "docker" "fzf" "go" "java-android-studio" "nvm" "pipx" "pnpm")
     # Add any additional exports here that are OS-specific
     OS_SPECIFIC_EXPORTS=("pnpm")
 
