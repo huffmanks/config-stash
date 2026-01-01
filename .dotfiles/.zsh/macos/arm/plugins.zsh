@@ -2,6 +2,12 @@
 # Plugins (macOS:arm64)
 # =====================================
 
+# ----- fzf key-bindings -----
+source /opt/homebrew/share/fzf/shell/key-bindings.zsh
+
+# ----- fzf completions -----
+source /opt/homebrew/share/fzf/shell/completion.zsh
+
 # ----- zsh-autosuggestions -----
 source "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
